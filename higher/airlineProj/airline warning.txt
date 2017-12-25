@@ -1,0 +1,15 @@
+robust@ubuntu:~/Documents$ g++ airlineTicketTest.cpp -o airlineTicketTest
+/tmp/ccTdzj4y.o: In function `main':
+airlineTicketTest.cpp:(.text+0x14): undefined reference to `airlineTicket::airlineTicket()'
+airlineTicketTest.cpp:(.text+0x50): undefined reference to `airlineTicket::setPassengerName(std::basic_string<char, std::char_traits<char>, std::allocator<char> >)'
+airlineTicketTest.cpp:(.text+0xaf): undefined reference to `airlineTicket::setNumberOfMiles(int)'
+airlineTicketTest.cpp:(.text+0xbb): undefined reference to `airlineTicket::calculatePrinceInDollars()'
+airlineTicketTest.cpp:(.text+0x10b): undefined reference to `airlineTicket::airlineTicket()'
+airlineTicketTest.cpp:(.text+0x162): undefined reference to `airlineTicket::setPassengerName(std::basic_string<char, std::char_traits<char>, std::allocator<char> >)'
+airlineTicketTest.cpp:(.text+0x1c1): undefined reference to `airlineTicket::setNumberOfMiles(int)'
+airlineTicketTest.cpp:(.text+0x1d5): undefined reference to `airlineTicket::setHasEliteSuperRewardsStatus(bool)'
+airlineTicketTest.cpp:(.text+0x1e1): undefined reference to `airlineTicket::calculatePrinceInDollars()'
+airlineTicketTest.cpp:(.text+0x229): undefined reference to `airlineTicket::~airlineTicket()'
+airlineTicketTest.cpp:(.text+0x242): undefined reference to `airlineTicket::~airlineTicket()'
+airlineTicketTest.cpp:(.text+0x25e): undefined reference to `airlineTicket::~airlineTicket()'
+collect2: ld returned 1 exit status

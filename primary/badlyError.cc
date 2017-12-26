@@ -2,6 +2,7 @@
 #include<iostream>
 #include<fstream>
 #include<conio.h>
+//#include<stdio.h>
 using namespace std;
 
 const string filename="dict.txt";

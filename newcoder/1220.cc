@@ -3,8 +3,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 using namespace std;
+
+#define M 5
+#define N 20
 
 class A{
 	public:
@@ -36,15 +39,63 @@ class C: public B{
 		}
 };
 
+void prim(int m, int n){
+	if(m >= n){
+		while(m%n)
+			n++;
+		m /= n;
+		prim(m, n);
+		cout<<n<<endl;
+	}
+}
+
+int func(char(* ss)[N], int *n){
+	int i, k = 0, len = N;
+	for(i=0; i<M; i++){
+		len = strlen(ss[i]);
+		if(len < *n){
+			*n = len;
+			k = i;
+		}
+	}
+	return k;
+}
+
 int main(int argc, char **argv){
+	/*
 	B *b = new B();
 	C *c = new C();
 	A *pab = dynamic_cast<B*>(b);
 	A *pac = dynamic_cast<C*>(c);
 	B *pbc = dynamic_cast<C*>(c);
-
+	
 	//B *pb = dynamic_cast<A*>(a);// downward cast failed
 	delete(b);
 	delete(c);
+	*/
+	
+	char a; // 1byte
+	int b; //2byte
+	int pm = 12456;
+	int pn = 24;
+	float c; //4byte
+	double d; //8byte
+
+	printf("sizeof(char)=%d\n", sizeof(a));
+	printf("sizeof(int)=%d\n", sizeof(b));
+	printf("sizeof(float)=%d\n", sizeof(c));
+	printf("sizeof(double)=%d\n", sizeof(d));
+	
+	prim(pm, pn);
+	
+	char ss[M][N] = {"shanghai", "guangzhou", "beijing", "tianjing", "chongqing"};
+	int n, k, i;
+	printf("\nThe originalb string are: \n");
+	for(i=0; i<M; i++)
+		puts(ss[i]);
+	k = func(ss, &n);
+	printf("\nThe length of shortest string is: %d\n", n);
+	printf("\nThe shortes string is : %s\n", ss[k]);
+
 	return 0;
 }

@@ -48,7 +48,7 @@ void prim(int m, int n){
 		cout<<n<<endl;
 	}
 }
-
+//string array
 int func(char(* ss)[N], int *n){
 	int i, k = 0, len = N;
 	for(i=0; i<M; i++){
@@ -59,6 +59,10 @@ int func(char(* ss)[N], int *n){
 		}
 	}
 	return k;
+}
+
+void GetMemory(char* p){
+	p = (char*)malloc(100);
 }
 
 int main(int argc, char **argv){
@@ -73,7 +77,7 @@ int main(int argc, char **argv){
 	delete(b);
 	delete(c);
 	*/
-	
+	/*
 	char a; // 1byte
 	int b; //2byte
 	int pm = 12456;
@@ -92,10 +96,68 @@ int main(int argc, char **argv){
 	int n, k, i;
 	printf("\nThe originalb string are: \n");
 	for(i=0; i<M; i++)
-		puts(ss[i]);
+		puts(ss[i]); //print to the screen
 	k = func(ss, &n);
 	printf("\nThe length of shortest string is: %d\n", n);
 	printf("\nThe shortes string is : %s\n", ss[k]);
+	*/
+	/*
+	char ccString1[] = "Is Page Fault??";
+	char ccString2[] = "No Page Fault??";
+	strcpy(ccString1, "No"); //"No\0Page Fault??"
+	if(strcmp(ccString1, ccString2)==0) //returns when strcmp counter '\0'
+		cout<<ccString2<<endl;
+	else
+		cout<<ccString1<<endl;
+	*/
+	/*
+	char *str = NULL;
+	GetMemory(str);
+	str = (char*)malloc(100);
+	strcpy(str, "Thunder");
+	strcat(str+2, "Downloader"); //append string to source string
+	printf(str);
+	*/
+
+	FILE *fp;
+	int i, a[6]={1,2,3,4,5,6}, k;
+	fp = fopen("data.dat", "w+b");
+	for(i=0; i<6; i++){
+		fseek(fp, 0L, 0);
+		fwrite(&a[5-i], sizeof(int), 1, fp);
+	}
+		rewind(fp);
+		fread(&k, sizeof(int), 1, fp);
+		fclose(fp);
+		printf("%d\n", k);
 
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

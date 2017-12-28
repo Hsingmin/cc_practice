@@ -119,15 +119,16 @@ int main(int argc, char **argv){
 	printf(str);
 	*/
 
-	FILE *fp;
+	FILE *fp; //define a file pointer
 	int i, a[6]={1,2,3,4,5,6}, k;
-	fp = fopen("data.dat", "w+b");
+	fp = fopen("data.dat", "w+b"); //open a rw file in binary
 	for(i=0; i<6; i++){
-		fseek(fp, 0L, 0);
-		fwrite(&a[5-i], sizeof(int), 1, fp);
+		//overwrite
+		fseek(fp, 0L, 0); //point to begining of the file
+		fwrite(&a[5-i], sizeof(int), 1, fp); //write data array into file reversely
 	}
-		rewind(fp);
-		fread(&k, sizeof(int), 1, fp);
+		rewind(fp); //point to head of the file
+		fread(&k, sizeof(int), 1, fp); //read an int data into k
 		fclose(fp);
 		printf("%d\n", k);
 

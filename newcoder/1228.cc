@@ -58,6 +58,20 @@ char* GetMem(void){
 	return p;
 }
 
+class Printer{
+public:
+	Printer(string name){
+		cout<<name;
+	}
+};
+
+class Container{
+public:
+	Container(): b("b"), a("a"){}
+	Printer a;
+	Printer b;
+};
+
 int main(int argc, char *argv[]){
 	
 	//T a[10]; //int *a[10] address array
@@ -70,10 +84,19 @@ int main(int argc, char *argv[]){
 	//A* p = new B;
 	//B::test() -- 2
 	//p->test();
-
+	/*
 	char *s = 0x0;
-	s = GetMem();
+	s = GetMem(); //pointer p deleted when function returns
 	printf("%s\n", s);
+	*/
+	/*
+	int a[3][4] = {0};
+	*(a[2]+1) = 2;
+	printf("%d\n", a[2][1]);
+	*/
+
+	//Container c;
+	printf("%s, %5.3s\n", "computer", "computer");
 
 	return 0;
 }

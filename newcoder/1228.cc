@@ -72,6 +72,39 @@ public:
 	Printer b;
 };
 
+class Point{
+public:
+	Point(int xx, int yy);
+	Point(Point &p);
+	Point(void);
+
+	int GetX(){
+		return X;
+	}
+	
+	int GetY(){
+		return Y;
+	}
+
+private:
+	int X, Y;
+};
+
+Point:: Point(int xx, int yy){
+	X = xx;
+	Y = yy;
+}
+
+Point:: Point(Point &p){
+	X = p.X;
+	Y = p.Y;
+}
+
+Point:: Point(void){
+	X = 0;
+	Y = 0;
+}
+
 int main(int argc, char *argv[]){
 	
 	//T a[10]; //int *a[10] address array
@@ -96,7 +129,60 @@ int main(int argc, char *argv[]){
 	*/
 
 	//Container c;
-	printf("%s, %5.3s\n", "computer", "computer");
+	//printf("%s, %5.3s\n", "computer", "computer");
+
+	int k, a, b;
+	unsigned int w = 5;
+	double x = 1.42;
+
+	//x %= 3;
+	//printf("%f\n", x);
+	printf("%d\n", (w+=-20)); //convert unsigned to signed
+	printf("%d\n", (k=(a=200, b=300)));
+	printf("%d\n", (a+=a-=a=9));
+	printf("%10s\n", "abcdefg");
+
+	//Pointer A(); //error calling constructor
+	Point A; //constructor without param
+	Point B(1, 2);
+	Point C(B);
+	cout<<A.GetX()<<endl;
+	cout<<B.GetX()<<endl;
+	cout<<C.GetX()<<endl;
 
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

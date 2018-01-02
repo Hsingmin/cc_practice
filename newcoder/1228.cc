@@ -8,9 +8,14 @@
 #include <stdlib.h>
 #include "Singleton.h"
 
+#define INT_PTR int*
+typedef int* int_ptr;
+
 using namespace std;
 
 typedef int * T;
+
+
 
 // Singleton 
 class CSingleton{
@@ -130,7 +135,7 @@ int main(int argc, char *argv[]){
 
 	//Container c;
 	//printf("%s, %5.3s\n", "computer", "computer");
-
+	/*
 	int k, a, b;
 	unsigned int w = 5;
 	double x = 1.42;
@@ -149,6 +154,59 @@ int main(int argc, char *argv[]){
 	cout<<A.GetX()<<endl;
 	cout<<B.GetX()<<endl;
 	cout<<C.GetX()<<endl;
+	*/
+	/*
+	char acX[] = "abc";
+	char acY[] = {'a', 'b', 'c'};
+	char *szX = "abc";
+	char *szY = "abc";
+	printf("&acX = %x\n", acX);
+	printf("&acY = %x\n", acY);
+	printf("&szX = %x\n", szX);
+	printf("&szY = %x\n", szY);
+	*/
+	/*
+	int i = 10;
+	int j = 1;
+	const int *p1;
+	int const *p2 = &i;
+	p2 = &j;
+	int *const p3 = &i;
+	*p3 = 20;
+	//*p2 = 30;
+	//p3 = &j;
+	*/
+	/*
+	INT_PTR a, b;
+	int_ptr c, d;
+	printf("sizeof(a)=%d, sizeof(b)=%d, sizeof(c)=%d, sizeof(d)=%d\n", sizeof(a), sizeof(b), sizeof(c), sizeof(d));
+	*/
+
+	string a = "hello world";
+	string b;
+	if(a.c_str() == b.c_str()){
+		cout<<"true"<<endl;
+	}
+	else{
+		cout<<"false"<<endl;
+	}
+
+	string c = b;
+	c = "";
+	if(a.c_str() == c.c_str()){
+		cout<<"true"<<endl;
+	}
+	else{
+		cout<<"false"<<endl;
+	}
+
+	a = "";
+	if(a.c_str() == b.c_str()){
+		cout<<"true"<<endl;
+	}
+	else{
+		cout<<"false"<<endl;
+	}
 
 	return 0;
 }

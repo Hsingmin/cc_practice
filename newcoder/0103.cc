@@ -147,7 +147,7 @@ int main(int argc, char *argv[]){
 	printf("%s\n", **p+1);
 	*/
 
-	//int a = 5;
+	int a = 5;
 	//printf("%d\n", ++(a++)); //lvalue required as increment operand
 	Point p1(3, 4);
 	Point p2(6, 9);

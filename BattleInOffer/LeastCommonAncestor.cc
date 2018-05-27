@@ -6,14 +6,14 @@ using namespace std;
 
 #define N 10000
 
-int getIndex(int key, int *input, int length, int *res){
+int getIndex(int &key, const int *input, const int length, int *index){
 	int occur = 0;
 	int i = 0;
+	int j = 0;
 	while(i<length){
 		if(input[i] == key){
 			occur++;
-			*res = i;
-			res++;
+			index[j++] = i;
 		}
 		if(occur==3)
 			break;
@@ -23,98 +23,63 @@ int getIndex(int key, int *input, int length, int *res){
 	return occur;
 }
 
-int pickAsChild(int *res){
-	int i = 0;
-	while(i<sizeof(res)/sizeof(int)){
-		if(res[i]/2)
-			break;
-		i++;
+int pickAsChild(const int *index){
+	for(int i=0; i<3; ++i){
+		if(index[i]/2)
+			return index[i];
 	}
 
-	return res[i];
+	return -1;
 }
 
-int getLine(int key, int *input, int *line){
+int getLine(int &key, int *input, const int size, int *line){
 	int occur;
-	int index[3];
+	// Each element would occur in 3 times at most.
+	int index[3] = {0};
 	int aschild;
+	int l = 0;
 	while(key != 1){
-		occur = getIndex(key, input, sizeof(input)/sizeof(int), index);
+		occur = getIndex(key, input, size, index);
 		aschild = pickAsChild(index);
 		*line = key;
+		cout<<"*line = "<<(*line)<<endl;
+		l++;
 		line++;
 		key = input[aschild-1];
 	}
 	*line = 1;
-
-	if(sizeof(line)/sizeof(int) == 1)
-		return 0;
-	return 1;
+	l++;
+	cout<<"*line = "<<(*line)<<endl;
+	return l;
 }
 
 int main(int argc, char **argv){
 	int input[] = {1,2,1,3,2,4,3,5,3,6,4,7,7,12,5,9,5,8,6,10,6,11,11,13};
-	// cout<<(sizeof(input)/sizeof(int))<<endl;
-	
-	int key1 = 13;
-	int key2 = 8;
-	int *line1;
-	int *line2;
-	int status;
+	int key1 = 5;
+	int key2 = 4;
+	int *line1 = new int;
+	int *line2 = new int;
+	int pivot1;
+	int pivot2;
+	int size = sizeof(input)/sizeof(int);
 
-	status = getLine(key1, input, line1);
-	status = getLine(key2, input, line2);
+	pivot1 = getLine(key1, input, size, line1);
+	pivot2 = getLine(key2, input, size, line2);
 	
-	/*
-	int occur1;
-	int key1 = 13;
-	int index1[3] = {0};
-	int *line1;
-	int aschild;
-	while(key1 != 1){
-		occur1 = getIndex(key1, input, sizeof(input)/sizeof(int), index1);
-		aschild = pickAsChild(index1);
-		*line1 = key1;
-		cout<<(*line1)<<endl;
-		line1++;
-		key1 = input[aschild-1];
-	}
-	*line1 = 1;
-	
-	int occur2;
-	int key2 = 13;
-	int index2[3] = {0};
-	int *line2;
-	//int aschild2;
-	while(key2 != 1){
-		occur2 = getIndex(key2, input, sizeof(input)/sizeof(int), index2);
-		aschild = pickAsChild(index2);
-		//*line2 = key2;
-		cout<<(*line2)<<endl;
-		line2++;
-		key2 = input[aschild-1];
-	}
-	*line2 = 1;
-	*/
+	cout<<"pivot1 = "<<pivot1<<endl;
+	cout<<"pivot2 = "<<pivot2<<endl;
 
-	
-
-	int pivot1 = sizeof(line1)/sizeof(int);
-	int pivot2 = sizeof(line2)/sizeof(int);
-
-	while(pivot1 != 0 && pivot2 != 0){
-		if(line1[pivot1] != line2[pivot2])
+	while(pivot1>0 && pivot2>0){
+		// cout<<"line1 : "<<line1[pivot1]<<endl;
+		// cout<<"line2 : "<<line2[pivot2]<<endl;
+		if(line1[--pivot1] != line2[--pivot2])
 			break;
-		pivot1--;
-		pivot2--;
+		// pivot1--;
+		// pivot2--;
 	}
-
 	cout<<"Common Ancestor = "<<line1[pivot1+1]<<endl;
-		
-
-	// cout<<"key "<<key<<" occur in "<<occur<<" times on index of ";
-	// cout<<res[0]<<", "<<res[1]<<", "<<res[2]<<endl;
-	// cout<<"As child node on position "<<pickAsChild(res)<<endl;
+	delete line1;
+	delete line2;
 		
 }
 

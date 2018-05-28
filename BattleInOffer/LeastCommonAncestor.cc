@@ -25,7 +25,7 @@ int getIndex(int &key, const int *input, const int length, int *index){
 
 int pickAsChild(const int *index){
 	for(int i=0; i<3; ++i){
-		if(index[i]/2)
+		if(index[i]%2)
 			return index[i];
 	}
 
@@ -55,8 +55,8 @@ int getLine(int &key, int *input, const int size, int *line){
 
 int main(int argc, char **argv){
 	int input[] = {1,2,1,3,2,4,3,5,3,6,4,7,7,12,5,9,5,8,6,10,6,11,11,13};
-	int key1 = 5;
-	int key2 = 4;
+	int key1 = 13;
+	int key2 = 12;
 	int *line1 = new int;
 	int *line2 = new int;
 	int pivot1;
@@ -70,12 +70,8 @@ int main(int argc, char **argv){
 	cout<<"pivot2 = "<<pivot2<<endl;
 
 	while(pivot1>0 && pivot2>0){
-		// cout<<"line1 : "<<line1[pivot1]<<endl;
-		// cout<<"line2 : "<<line2[pivot2]<<endl;
 		if(line1[--pivot1] != line2[--pivot2])
 			break;
-		// pivot1--;
-		// pivot2--;
 	}
 	cout<<"Common Ancestor = "<<line1[pivot1+1]<<endl;
 	delete line1;

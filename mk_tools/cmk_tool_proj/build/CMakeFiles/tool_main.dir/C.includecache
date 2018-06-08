@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/main.c
+mytool1.h
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/mytool1.h
+mytool2.h
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/mytool2.h
+
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/mytool1.c
+mytool1.h
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/mytool1.h
+
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/mytool1.h
+stdio.h
+-
+
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/mytool2.c
+mytool2.h
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/mytool2.h
+
+/home/alfred/workspace/cc_practice/mk_tools/tool_proj/mytool2.h
+stdio.h
+-
+

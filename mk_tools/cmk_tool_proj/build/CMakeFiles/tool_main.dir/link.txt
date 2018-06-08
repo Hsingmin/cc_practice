@@ -1,0 +1,1 @@
+/usr/bin/cc      CMakeFiles/tool_main.dir/mytool2.c.o CMakeFiles/tool_main.dir/main.c.o CMakeFiles/tool_main.dir/mytool1.c.o  -o tool_main -rdynamic 

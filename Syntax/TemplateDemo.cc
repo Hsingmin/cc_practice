@@ -4,6 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include <list>
+#include "ctemplate.h"
+
 
 using namespace std;
 
@@ -86,7 +89,77 @@ void test(){
     cout<<"Test Done!"<<endl;
 }
 
+template<class T>
+T getMinNumber(T x, T y){
+    return (x<y)? x:y;
+}
+
+void TemplateFuncTest(){
+    int n1 = 2, n2 = 10;
+    double d1 = 1.5, d2 = 5.6;
+    cout<<"Minumum Integer : "<<getMinNumber(n1, n2)<<endl;
+    cout<<"Minumum Real : "<<getMinNumber(d1, d2)<<endl;
+}
+
+using namespace ctemplate;
+
+void ClassTemplateTest(){
+    TClass<int, int> c1(3, 5);
+    c1.show();
+
+    TClass<int, char> c2(6, 'c');
+    c2.show();
+
+    TClass<double, int> c3(2.9f, 10);
+    c3.show();
+}
+
+template<typename T>
+void print(T t){
+    typename T::iterator itor;
+    for(itor=t.begin(); itor!=t.end(); ++itor){
+        cout<<(*itor)<<" ";
+    }
+    cout<<endl;
+}
+void TemplateTypeTest(){
+    list<int> l;
+    l.push_back(1);
+    l.push_front(2);
+    if(!l.empty())
+        print(l);
+
+    vector<int> v;
+    v.push_back(1);
+    v.push_back(6);
+    if(!v.empty())
+        print(v);
+}
+
+class DoSome{
+    public:
+        void operator()(int i);
+};
+
+void DoSome::operator()(int i){
+    cout<<i<<endl;
+}
+
+void DoSomeTest(){
+    DoSome doSome;
+    doSome(10);
+}
+
 int main(int args, char **argv){
-    test();
+    // test();
+    
+    // TemplateFuncTest();
+
+    // ClassTemplateTest();
+
+    // TemplateTypeTest();
+
+    DoSomeTest();
+
     return 0;
 }

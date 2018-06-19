@@ -3,50 +3,23 @@
 
 #include <iostream>
 #include <memory>
-#include <string>
+#include "inteptr.h"
 
 using namespace std;
 
-class AutoPtr{
-    public:
-        AutoPtr(string s){
-            str = s;
-            cout<<"auto pointer created."<<endl;
-        }
-
-        ~AutoPtr(){
-            cout<<"auto pointer delete:"<<str<<endl;
-        }
-
-        string& getString(){
-            return str;
-        }
-
-        void setString(string s){
-            str = s;
-        }
-
-        void print(){
-            cout<<str<<endl;
-        }
-
-    private:
-        string str;
-};
-
 int AutoPtrTest(){
     
-    auto_ptr<AutoPtr> pAuto(new AutoPtr("abcd"));
+    auto_ptr<Ptr> pAuto(new Ptr("abcd"));
     pAuto->setString("hello");
     pAuto->print();  // hello
     pAuto.get()->print();  //hello
     pAuto->getString() += "world!";
     (*pAuto).print();  // helloworld!
-    pAuto.reset(new AutoPtr("abcd"));  // auto pointer deleted:helloworld!
+    pAuto.reset(new Ptr("abcd"));  // auto pointer deleted:helloworld!
     pAuto->print();  // abcd
 
-    auto_ptr<AutoPtr> ptr1(new AutoPtr("123"));
-    auto_ptr<AutoPtr> ptr2(new AutoPtr("456"));
+    auto_ptr<Ptr> ptr1(new Ptr("123"));
+    auto_ptr<Ptr> ptr2(new Ptr("456"));
     ptr2 = ptr1;  // ptr2 take charge
     ptr2->print();  // 123
     if(NULL == ptr1.get())
@@ -58,8 +31,8 @@ int AutoPtrTest(){
 }
 
 int SharedPtrTest(){
-    shared_ptr<AutoPtr> ptr1(new AutoPtr("123"));
-    shared_ptr<AutoPtr> ptr2(new AutoPtr("456"));
+    shared_ptr<Ptr> ptr1(new Ptr("123"));
+    shared_ptr<Ptr> ptr2(new Ptr("456"));
 
     cout<<(ptr2->getString())<<endl;  // 456
     cout<<ptr2.use_count()<<endl;  //1

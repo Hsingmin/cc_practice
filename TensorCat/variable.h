@@ -120,7 +120,7 @@ namespace expression{
             Implement(double);
             Implement(Operation, const std::vector<Variable>&);
 
-            double var;
+            double val;
             Operation op;
             std::vector<Variable> children;
             std::vector<std::weak_ptr<Implement>> parents;

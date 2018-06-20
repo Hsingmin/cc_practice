@@ -19,7 +19,7 @@ namespace expression{
             // getter and setter
             std::string getKey() const;
             int getValue() const;
-            std:: string getOperation() const;
+            std::string getOperation() const;
             // friend struct and function
             bool operator==(const HashContent& rhc) const;
             friend struct std::hash<HashContent>;

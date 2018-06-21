@@ -5,6 +5,7 @@
 #include <string>
 #include <iomanip>
 #include <functional>
+#include <unordered_set>
 
 int HashSimple(){
     std::string s = "Standard back! I've got jimies!";
@@ -40,11 +41,11 @@ struct CustomHash{
 namespace std{
     template<>
         struct hash<HashContent>{
-            typedef HashContent argumentType;
-            typedef std::size_t resultType;
-            resultType operator()(argumentType const& c) const noexcept{
-                resultType const h1(std::hash<std::string>{}(c.head));
-                resultType const h2(std::hash<std::string>{}(c.tail));
+            typedef HashContent argument_type;
+            typedef std::size_t result_type;
+            result_type operator()(argument_type const& c) const noexcept{
+                result_type const h1(std::hash<std::string>{}(c.head));
+                result_type const h2(std::hash<std::string>{}(c.tail));
                 return h1^(h2<<1);
             }
         };
@@ -62,8 +63,16 @@ int HashComplex(){
     std::cout<<"hash("<<std::quoted(object.head)<<", "
         <<std::quoted(object.tail)<<") = "
         <<CustomHash{}(object)<<" (using CustomHash)\n or "
-        <<std::hash<CustomHash>{}(object)<<" (using injected std::hash<CustomHash> specialization)\n";
-    
+        <<std::hash<HashContent>{}(object)
+        <<" (using injected std::hash<HashContent> specialization)\n";
+
+    // custom hash makes it possible to use custom types in unordered containers
+    // 
+    std::unordered_set<HashContent> names = {object, {"Bender", "Rodriguez"}, {"Leela", "Turanga"}};
+    for(auto& s: names){
+        std::cout<<std::quoted(s.head)<<" "<<std::quoted(s.tail)<<"\n";
+    }
+    return 0;
 }
 
 int main(){

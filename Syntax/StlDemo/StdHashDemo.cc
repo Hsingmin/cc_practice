@@ -41,11 +41,11 @@ struct CustomHash{
 namespace std{
     template<>
         struct hash<HashContent>{
-            typedef HashContent argument_type;
-            typedef std::size_t result_type;
-            result_type operator()(argument_type const& c) const noexcept{
-                result_type const h1(std::hash<std::string>{}(c.head));
-                result_type const h2(std::hash<std::string>{}(c.tail));
+            typedef HashContent argumentType;
+            typedef std::size_t resultType;
+            resultType operator()(argumentType const& c) const noexcept{
+                resultType const h1(std::hash<std::string>{}(c.head));
+                resultType const h2(std::hash<std::string>{}(c.tail));
                 return h1^(h2<<1);
             }
         };
@@ -68,7 +68,10 @@ int HashComplex(){
 
     // custom hash makes it possible to use custom types in unordered containers
     // 
-    std::unordered_set<HashContent> names = {object, {"Bender", "Rodriguez"}, {"Leela", "Turanga"}};
+    std::unordered_set<HashContent> names = {
+        object,
+        {"Bender", "Rodriguez"},
+        {"Leela", "Turanga"}};
     for(auto& s: names){
         std::cout<<std::quoted(s.head)<<" "<<std::quoted(s.tail)<<"\n";
     }

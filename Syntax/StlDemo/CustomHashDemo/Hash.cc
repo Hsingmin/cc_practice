@@ -35,8 +35,10 @@ namespace expression{
 
 namespace std{
     template<>
-        size_t hash<expression::HashContent>::operator()
-            (const expression::HashContent& hc) const{
+        struct hash<expression::HashContent>{
+            size_t operator()(const expression::HashContent& hc) const{
                 return std::hash<std::shared_ptr<expression::HashContent::Implement>>{}(hc.pImplement);
-    }
+            }
+
+        };
 }

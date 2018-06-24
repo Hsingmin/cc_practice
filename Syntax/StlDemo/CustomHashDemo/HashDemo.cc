@@ -19,7 +19,19 @@ void HashTest(){
     expression::HashContent polynomial_op("polynomial", 1);
 
     expression::HashContent plus_op_vice = plus_op;
+    
+    std::cout<<plus_op.getOperation()<<" : "<<plus_op.getValue()<<"\n";
 
+    expression::HashContent object = {"convolute", 256};
+
+    std::cout<<object.getOperation()<<" : "<<object.getValue()<<"\n";
+    std::cout<<"plus_op"<<" == "<<"convolute ? "<<(plus_op == object)<<"\n";
+
+    std::cout<<"plus_op"<<" == "<<"plus_op_vice ? "<<(plus_op == plus_op_vice)<<"\n";
+    
+    std::cout<<std::hash<expression::HashContent>{}(object)<<"\n";
+
+    /*
     std::unordered_set<expression::HashContent> ops = {plus_op,
                                            minus_op,
                                            multiply_op,
@@ -28,9 +40,9 @@ void HashTest(){
                                            polynomial_op,
                                            plus_op_vice};
     for(auto& s: ops){
-        std::cout<<std::quoted(s.operation)<<" "<<std::quoted(s.value)<<"\n";
+        std::cout<<s.getOperation()<<" "<<s.getValue()<<"\n";
     }
-
+    */
 }
 
 int main(int args, char **argv){

@@ -34,11 +34,25 @@ namespace expression{
 }
 
 namespace std{
+    /*
     template<>
         struct hash<expression::HashContent>{
-            size_t operator()(const expression::HashContent& hc) const{
+            size_t operator()(const expression::HashContent& hc) const noexcept{
                 return std::hash<std::shared_ptr<expression::HashContent::Implement>>{}(hc.pImplement);
             }
 
         };
+    */
+
+    template<>
+        struct hash<expression::HashContent>{
+            typedef expression::HashContent argument_type;
+            typedef std::size_t result_type;
+            result_type operator()(argument_type const& hc) const noexcept{
+                result_type const h(std::hash<std::shared_ptr
+                        <argument_type::Implement>>{}(hc.pImplement));
+                return h;
+            }
+    };
+
 }

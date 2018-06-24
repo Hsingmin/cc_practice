@@ -29,7 +29,7 @@ namespace expression{
     };
 
     HashContent::HashContent(std::string op, int num):
-        pImp(new Implement(op, num)){}
+        pImp(new Implement(op, num)){};
     HashContent::~HashContent(){}
     
     std::string HashContent::getOperation() const{
@@ -46,9 +46,39 @@ namespace expression{
 
 }
 
+namespace std{
+    class Queue{
+        public:
+            Queue(std::string, int);
+            ~Queue();
+            std::string getName() const;
+            int getNumber() const;
+        private:
+            std::string name;
+            int number; 
+    };
+    
+    Queue::Queue(std::string name, int number):
+        name(name), number(number){};
+    Queue::~Queue(){};
+
+    std::string Queue::getName() const{
+        return name;
+    }
+
+    int Queue::getNumber() const{
+        return number;
+    }
+
+}
+
 int main(){
     expression::HashContent h("add", 2);
     std::cout<<h.getOperation()<<" : "<<h.getValue()<<"\n";
+
+    std::Queue q("queue", 10);
+    std::cout<<q.getName()<<" : "<<q.getNumber()<<"\n";
+
 }
 
 

@@ -76,6 +76,12 @@ int main(){
     expression::HashContent h("add", 2);
     std::cout<<h.getOperation()<<" : "<<h.getValue()<<"\n";
 
+    expression::HashContent p("plus", 2);
+    std::cout<<p.getOperation()<<" : "<<p.getValue()<<"\n";
+    
+    expression::HashContent conv("conv", 1024);
+    std::cout<<conv.getOperation()<<" : "<<conv.getValue()<<"\n";
+
     std::Queue q("queue", 10);
     std::cout<<q.getName()<<" : "<<q.getNumber()<<"\n";
 
